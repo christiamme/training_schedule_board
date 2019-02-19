@@ -2,6 +2,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.botonera {
+  margin: auto;
+  text-align: center;
+  width: 60%;
+  padding: 10px;
+}
+
+.button5 {
+  background-color: white;
+  color: black;
+  border: 1px solid #a9a9a9;
+  padding: 2px;
+  margin: 2px;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}
+.button5:focus {
+  background-color: blue;
+  color: white;
+}
+
 .accordion {
   color: #444;
   cursor: pointer;
@@ -13,18 +37,18 @@ body {
   font-size: 15px;
   transition: 0.4s;
 }
-.color1 {
-  background-color: #6090B8;
+.color-pdp {
+  background-color: #42b2e1;
   font-weight: bold;
   color: #fff;
 }
-.color2 {
-  background-color: #BFD7EA;
+.color-tec21 {
+  background-color: #c0272d;
   font-weight: bold;
-  color: #444;
+  color: #fff;
 }
-.color3 {
-  background-color: #FF970F;
+.color-transversales {
+  background-color: #27255f;
   font-weight: bold;
   color: #fff;
 }
