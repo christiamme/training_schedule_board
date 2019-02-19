@@ -7,56 +7,16 @@
     <link rel="stylesheet" href="resources/DataTables/datatables.min.css" />
   </head>
   <body>
-    <h2>Oferta de Capacitación</h2>
-    <p>
-      Elige la categoría y utiliza las herramientas de búsqueda para filtrar
-      según tus necesidades.
-    </p>
-    <button class="accordion color1">Tec21</button>
+    <button class="accordion color-pdp">PDP - Programa de Desarrollo de Profesores</button>
     <div class="panel">
-      <table id="tabla_oferta_tec21" class="dataTable">
-        <thead>
-          <tr>
-            <th>Campus</th>
-            <th>Lugar</th>
-            <th>Curso/Taller</th>
-            <th>Modalidad</th>
-            <th>Fechas</th>
-            <th>Horario</th>
-            <th>Grupo</th>
-            <th>Público</th>
-            <th>Inscripción</th>
-            <th>Sub-programa</th>
-            <th>Horas Acreditables</th>
-            <!-- th>Programa</th -->
-            <!-- th>Instructor</th -->
-            <!-- th>Correo</th -->
-          </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-          <tr>
-            <th>Campus</th>
-            <th>Lugar</th>
-            <th>Curso/Taller</th>
-            <th>Modalidad</th>
-            <th>Fechas</th>
-            <th>Horario</th>
-            <th>Grupo</th>
-            <th>Público</th>
-            <th>Inscripción</th>
-            <th>Sub-programa</th>
-            <th>Horas Acreditables</th>
-            <!-- th>Programa</th -->
-            <!-- th>Instructor</th -->
-            <!-- th>Correo</th -->
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-
-    <button class="accordion color2">PDP</button>
-    <div class="panel">
+      <div class="botonera">
+        <button class="button5" onclick="updateInputs('AGS')">AGS</button>
+        <button class="button5" onclick="updateInputs('COB')">COB</button>
+        <button class="button5" onclick="updateInputs('GDA')">GDA</button>
+        <button class="button5" onclick="updateInputs('SIN')">SIN</button>
+        <button class="button5" onclick="updateInputs('SON')">SON</button>
+        <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+      </div>
       <table id="tabla_oferta_pdp" class="dataTable display">
         <thead>
           <tr>
@@ -69,7 +29,7 @@
             <th>Grupo</th>
             <th>Público</th>
             <th>Inscripción</th>
-            <th>Sub-programa</th>
+            <th>Programa</th>
             <th>Horas Acreditables</th>
             <!-- th>Programa</th -->
             <!-- th>Instructor</th -->
@@ -88,7 +48,7 @@
             <th>Grupo</th>
             <th>Público</th>
             <th>Inscripción</th>
-            <th>Sub-programa</th>
+            <th>Programa</th>
             <th>Horas Acreditables</th>
             <!-- th>Programa</th -->
             <!-- th>Instructor</th -->
@@ -98,8 +58,16 @@
       </table>
     </div>
 
-    <button class="accordion color3">Transversales</button>
+    <button class="accordion color-transversales">Transversales</button>
     <div class="panel">
+      <div class="botonera">
+        <button class="button5" onclick="updateInputs('AGS')">AGS</button>
+        <button class="button5" onclick="updateInputs('COB')">COB</button>
+        <button class="button5" onclick="updateInputs('GDA')">GDA</button>
+        <button class="button5" onclick="updateInputs('SIN')">SIN</button>
+        <button class="button5" onclick="updateInputs('SON')">SON</button>
+        <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+      </div>
       <table id="tabla_oferta_transversales" class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -112,7 +80,7 @@
             <th>Grupo</th>
             <th>Público</th>
             <th>Inscripción</th>
-            <th>Sub-programa</th>
+            <th>Programa</th>
             <th>Horas Acreditables</th>
             <!-- th>Programa</th -->
             <!-- th>Instructor</th -->
@@ -131,7 +99,67 @@
             <th>Grupo</th>
             <th>Público</th>
             <th>Inscripción</th>
-            <th>Sub-programa</th>
+            <th>Programa</th>
+            <th>Horas Acreditables</th>
+            <!-- th>Programa</th -->
+            <!-- th>Instructor</th -->
+            <!-- th>Correo</th -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <button class="accordion color-tec21">Características TEC21</button>
+    <div class="panel">
+      <div class="botonera">
+        <button class="button5" onclick="updateInputs('AGS')">AGS</button>
+        <button class="button5" onclick="updateInputs('COB')">COB</button>
+        <button class="button5" onclick="updateInputs('GDA')">GDA</button>
+        <button class="button5" onclick="updateInputs('SIN')">SIN</button>
+        <button class="button5" onclick="updateInputs('SON')">SON</button>
+        <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+      </div>
+      <div class="botonera">
+        <button class="button5" onclick="updateTec21('Actualizado en la Docencia')">Actualizado en la Docencia</button>
+        <button class="button5" onclick="updateTec21('Innovación')">Innovador</button>
+        <button class="button5" onclick="updateTec21('Inspirador')">Inspirador</button>
+        <button class="button5" onclick="updateTec21('Uso de Tecnología')">Uso de Tecnología</button>
+        <button class="button5" onclick="updateTec21('Vinculado')">Vinculado</button>
+        <button class="button5" onclick="updateTec21('Semana i')">Semana i</button>
+        <button class="button5" onclick="updateTec21('Semestre i')">Semestre i</button>
+      </div>
+      <table id="tabla_oferta_tec21" class="dataTable">
+        <thead>
+          <tr>
+            <th>Campus</th>
+            <th>Lugar</th>
+            <th>Curso/Taller</th>
+            <th>Modalidad</th>
+            <th>Fechas</th>
+            <th>Horario</th>
+            <th>Grupo</th>
+            <th>Público</th>
+            <th>Inscripción</th>
+            <th>Programa</th>
+            <th>Horas Acreditables</th>
+            <!-- th>Programa</th -->
+            <!-- th>Instructor</th -->
+            <!-- th>Correo</th -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <th>Campus</th>
+            <th>Lugar</th>
+            <th>Curso/Taller</th>
+            <th>Modalidad</th>
+            <th>Fechas</th>
+            <th>Horario</th>
+            <th>Grupo</th>
+            <th>Público</th>
+            <th>Inscripción</th>
+            <th>Programa</th>
             <th>Horas Acreditables</th>
             <!-- th>Programa</th -->
             <!-- th>Instructor</th -->
