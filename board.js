@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // Crear tabla Tec21
-  var tabla_tec21 = $("#tabla_oferta_tec21").DataTable({
+  tabla_tec21 = $("#tabla_oferta_tec21").DataTable({
     responsive: true,
     columnDefs: [
       { responsivePriority: 1, targets: [0, 2, 4, 7] },
@@ -35,7 +35,7 @@ $(document).ready(function() {
   });
 
   // Crear tabla Transversales
-  var tabla_transversales = $("#tabla_oferta_transversales").DataTable({
+  tabla_transversales = $("#tabla_oferta_transversales").DataTable({
     responsive: true,
     columnDefs: [
       { responsivePriority: 1, targets: [0, 2, 4, 7] },
@@ -69,7 +69,7 @@ $(document).ready(function() {
   });
 
   // Crear tabla PDP
-  var tabla_pdp = $("#tabla_oferta_pdp").DataTable({
+  tabla_pdp = $("#tabla_oferta_pdp").DataTable({
     responsive: true,
     columnDefs: [
       { responsivePriority: 1, targets: [0, 2, 4, 7] },
@@ -110,44 +110,44 @@ $(document).ready(function() {
   $.getJSON(url, function(data) {
     var entry = data.feed.entry;
     $(entry).each(function() {
+      // Determinar nombre del campus
+      switch (this.gsx$campussede.$t) {
+        case 'AGS':
+          campus = 'AGS <small>Aguascalientes</small>';
+          break;
+        case 'COB':
+          campus = 'COB <small>Ciudad Obregón</small>';
+          break;
+        case 'GDA':
+          campus = 'GDA <small>Guadalajara</small>';
+          break;
+        case 'SIN':
+          campus = 'SIN <small>Sinaloa</small>';
+          break;
+        case 'SON':
+          campus = 'SON <small>Sonora</small>';
+          break;
+        case 'ZAC':
+          campus = 'ZAC <small>Zacatecas</small>';
+          break;
+        default:
+          campus = 'Nacional';
+      }
+
       // Si this.gsx$programa.$t == 'TEC 21'
       if (this.gsx$programa.$t == 'TEC 21') {
         // Agregar a la tabla tabla_tec21
-        add_a_Row(this, tabla_tec21);
+        add_a_Row(this, tabla_tec21, campus);
       }
       // Si this.gsx$programa.$t == 'PDP'
-      else if (this.gsx$programa.$t == 'PDP') {
+      if (this.gsx$programa.$t == 'PDP') {
         // Agregar a la tabla tabla_pdp
-        tabla_pdp.row.add([
-          this.gsx$campussede.$t,
-          this.gsx$salón.$t,
-          this.gsx$nombre.$t,
-          this.gsx$modalidad.$t,
-          this.gsx$fechas.$t,
-          this.gsx$horario.$t,
-          this.gsx$grupo.$t,
-          this.gsx$nivel.$t,
-          this.gsx$inscripción.$t,
-          this.gsx$subprograma.$t,
-          this.gsx$horasacreditables.$t
-        ]).draw();
+        add_a_Row(this, tabla_pdp, campus);
       }
       // Si this.gsx$programa.$t == 'Transversales'
-      else if (this.gsx$programa.$t == 'Transversales') {
+      if (this.gsx$programa.$t == 'Transversales') {
         // Agregar a la tabla tabla_transversales
-        tabla_transversales.row.add([
-          this.gsx$campussede.$t,
-          this.gsx$salón.$t,
-          this.gsx$nombre.$t,
-          this.gsx$modalidad.$t,
-          this.gsx$fechas.$t,
-          this.gsx$horario.$t,
-          this.gsx$grupo.$t,
-          this.gsx$nivel.$t,
-          this.gsx$inscripción.$t,
-          this.gsx$subprograma.$t,
-          this.gsx$horasacreditables.$t
-        ]).draw();
+        add_a_Row(this, tabla_transversales, campus);
       }
     });
   });
@@ -168,9 +168,9 @@ $(document).ready(function() {
   }
 });
 
-function add_a_Row(objeto, tabla_a_actualizar){
+function add_a_Row(objeto, tabla_a_actualizar, campus){
   tabla_a_actualizar.row.add([
-    objeto.gsx$campussede.$t,
+    campus,
     objeto.gsx$salón.$t,
     objeto.gsx$nombre.$t,
     objeto.gsx$modalidad.$t,
@@ -179,8 +179,42 @@ function add_a_Row(objeto, tabla_a_actualizar){
     objeto.gsx$grupo.$t,
     objeto.gsx$nivel.$t,
     objeto.gsx$inscripción.$t,
-    objeto.gsx$subprograma.$t,
+    objeto.gsx$programa.$t+': '+objeto.gsx$subprograma.$t,
     objeto.gsx$horasacreditables.$t
   ]).draw();
   return;
+}
+
+function updateInputs(text_input){
+  var camp = ["AGS", "COB", "GDA", "SIN", "SON", "ZAC"];
+  // for each document.getElementsByTagName("input")
+  var tablas = [tabla_pdp, tabla_transversales, tabla_tec21];
+  var inputs = document.getElementsByTagName("input");
+  for (i = 0; i < inputs.length; i++) {
+    // get input's current text
+    current = inputs[i].value;
+    if (camp.includes(current.substring(0,3))) {
+      current = current.substring(3);
+    }
+    // write back current text + text_input
+    new_text = text_input + " " + current;
+    inputs[i].value = new_text;
+    tablas[i].search(new_text).draw();
+  }
+}
+
+function updateTec21(text_input){
+  input_tec21 = document.getElementsByTagName("input")[2];
+  var cat = ["Actualizado en la Docencia", "Innovación", "Inspirador", "Semana i", "Semestre i", "Uso de Tecnología", "Vinculado"]
+  // get input's current text
+  current = input_tec21.value;
+  // replace category names
+  for (i = 0; i < cat.length; i++) {
+    // replace input's current text
+    current = current.replace(cat[i],"");
+  }
+  // write back current text + text_input
+  new_text = current + " " + text_input;
+  input_tec21.value = new_text;
+  tabla_tec21.search(new_text).draw();
 }
