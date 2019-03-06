@@ -3,9 +3,79 @@ $(document).ready(function() {
   tabla_tec21 = $("#tabla_oferta_tec21").DataTable({
     responsive: true,
     columnDefs: [
-      { responsivePriority: 1, targets: [0, 2, 4, 7] },
-      { responsivePriority: 2, targets: [3, 5, 8] },
-      { responsivePriority: 2, targets: [1, 6, 9, 10] },
+      { responsivePriority: 1, targets: [0, 2, 4, 6] },
+      { responsivePriority: 2, targets: [3, 5, 7] },
+      { responsivePriority: 2, targets: [1, 8, 9] },
+      { targets: -1, className: 'center-cell' }
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "Sin información disponible",
+      info: "Mostrando registros _START_ a _END_ de _TOTAL_",
+      infoEmpty: "Mostrando 0 registros de 0 disponibles",
+      infoFiltered: "(filtrado de _MAX_ registros totales)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ registros",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Ningún registro encontrado",
+      paginate: {
+        first: "Primero",
+        last: "Último",
+        next: "Siguiente",
+        previous: "Previo"
+      },
+      aria: {
+        sortAscending: ": activar para ordenar ascendente",
+        sortDescending: ": activar para ordenar descendente"
+      }
+    }
+  });
+
+  // Crear tabla Modelo Educativo Tec21
+  tabla_metec21 = $("#tabla_oferta_metec21").DataTable({
+    responsive: true,
+    columnDefs: [
+      { responsivePriority: 1, targets: [0, 2, 4, 6] },
+      { responsivePriority: 2, targets: [3, 5, 7] },
+      { responsivePriority: 2, targets: [1, 8, 9] },
+      { targets: -1, className: 'center-cell' }
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "Sin información disponible",
+      info: "Mostrando registros _START_ a _END_ de _TOTAL_",
+      infoEmpty: "Mostrando 0 registros de 0 disponibles",
+      infoFiltered: "(filtrado de _MAX_ registros totales)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ registros",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Ningún registro encontrado",
+      paginate: {
+        first: "Primero",
+        last: "Último",
+        next: "Siguiente",
+        previous: "Previo"
+      },
+      aria: {
+        sortAscending: ": activar para ordenar ascendente",
+        sortDescending: ": activar para ordenar descendente"
+      }
+    }
+  });
+
+  // Crear tabla Preparatoria
+  tabla_prepa = $("#tabla_oferta_prepa").DataTable({
+    responsive: true,
+    columnDefs: [
+      { responsivePriority: 1, targets: [0, 2, 4, 6] },
+      { responsivePriority: 2, targets: [3, 5, 7] },
+      { responsivePriority: 2, targets: [1, 8, 9] },
       { targets: -1, className: 'center-cell' }
     ],
     language: {
@@ -38,9 +108,9 @@ $(document).ready(function() {
   tabla_transversales = $("#tabla_oferta_transversales").DataTable({
     responsive: true,
     columnDefs: [
-      { responsivePriority: 1, targets: [0, 2, 4, 7] },
-      { responsivePriority: 2, targets: [3, 5, 8] },
-      { responsivePriority: 2, targets: [1, 6, 9, 10] }
+      { responsivePriority: 1, targets: [0, 2, 4, 6] },
+      { responsivePriority: 2, targets: [3, 5, 7] },
+      { responsivePriority: 2, targets: [1, 8, 9] },
     ],
     language: {
       decimal: "",
@@ -72,9 +142,9 @@ $(document).ready(function() {
   tabla_pdp = $("#tabla_oferta_pdp").DataTable({
     responsive: true,
     columnDefs: [
-      { responsivePriority: 1, targets: [0, 2, 4, 7] },
-      { responsivePriority: 2, targets: [3, 5, 8] },
-      { responsivePriority: 2, targets: [1, 6, 9, 10] }
+      { responsivePriority: 1, targets: [0, 2, 4, 6] },
+      { responsivePriority: 2, targets: [3, 5, 7] },
+      { responsivePriority: 2, targets: [1, 8, 9] },
     ],
     language: {
       decimal: "",
@@ -131,7 +201,7 @@ $(document).ready(function() {
           campus = 'ZAC <small>Zacatecas</small>';
           break;
         default:
-          campus = 'Nacional';
+          campus = 'NAL <small>Nacional</small>';
       }
 
       // Si this.gsx$programa.$t == 'TEC 21'
@@ -148,6 +218,20 @@ $(document).ready(function() {
       if (this.gsx$programa.$t == 'Transversales') {
         // Agregar a la tabla tabla_transversales
         add_a_Row(this, tabla_transversales, campus);
+      }
+      // Si this.gsx$nivel.$t contiene 'Preparatoria' o 'Ambos'
+      if (this.gsx$nivel.$t == 'Ambos' || this.gsx$nivel.$t == 'Preparatoria') {
+        // Agregar a la tabla tabla_prepa
+        add_a_Row(this, tabla_prepa, campus);
+      }
+      // Si this.gsx$nombre.$t contiene cursos dentro cursos_metec21
+      var nombre_comparable = this.gsx$nombre.$t.toLowerCase();
+      var cursos_metec21 = ['basada en competencias', 'mpfp', 'canvas'];
+      for (i = 0; i < cursos_metec21.length; i++) {
+        if (nombre_comparable.includes(cursos_metec21[i])) {
+          // Agregar a la tabla tabla_prepa
+          add_a_Row(this, tabla_metec21, campus);
+        }
       }
     });
   });
@@ -176,7 +260,7 @@ function add_a_Row(objeto, tabla_a_actualizar, campus){
     objeto.gsx$modalidad.$t,
     objeto.gsx$fechas.$t,
     objeto.gsx$horario.$t,
-    objeto.gsx$grupo.$t,
+    // objeto.gsx$grupo.$t,
     objeto.gsx$nivel.$t,
     objeto.gsx$inscripción.$t,
     objeto.gsx$programa.$t+': '+objeto.gsx$subprograma.$t,
@@ -186,15 +270,18 @@ function add_a_Row(objeto, tabla_a_actualizar, campus){
 }
 
 function updateInputs(text_input){
-  var camp = ["AGS", "COB", "GDA", "SIN", "SON", "ZAC"];
+  var camp = ["AGS", "COB", "GDA", "SIN", "SON", "ZAC", "NAL"];
   // for each document.getElementsByTagName("input")
-  var tablas = [tabla_pdp, tabla_transversales, tabla_tec21];
+  var tablas = [tabla_pdp, tabla_transversales, tabla_tec21, tabla_metec21, tabla_prepa];
   var inputs = document.getElementsByTagName("input");
   for (i = 0; i < inputs.length; i++) {
     // get input's current text
     current = inputs[i].value;
     if (camp.includes(current.substring(0,3))) {
       current = current.substring(3);
+    }
+    if (current.includes('Nacional')) {
+      current = current.substring(8);
     }
     // write back current text + text_input
     new_text = text_input + " " + current;

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="resources/DataTables/datatables.min.css" />
   </head>
   <body>
-    <button class="accordion color-pdp">PDP - Programa de Desarrollo de Profesores</button>
+
+    <button class="accordion color-pdptec21">PDP - Prepárate para el Modelo Educativo Tec21 (EBC + 10 MPFP + Canvas)</button>
     <div class="panel">
       <div class="botonera">
         <button class="button5" onclick="updateInputs('AGS')">AGS</button>
@@ -16,8 +17,9 @@
         <button class="button5" onclick="updateInputs('SIN')">SIN</button>
         <button class="button5" onclick="updateInputs('SON')">SON</button>
         <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+        <button class="button5" onclick="updateInputs('Nacional')">NAL</button>
       </div>
-      <table id="tabla_oferta_pdp" class="dataTable display">
+      <table id="tabla_oferta_metec21" class="dataTable display">
         <thead>
           <tr>
             <th>Campus</th>
@@ -26,7 +28,7 @@
             <th>Modalidad</th>
             <th>Fechas</th>
             <th>Horario</th>
-            <th>Grupo</th>
+            <!-- th>Grupo</th -->
             <th>Público</th>
             <th>Inscripción</th>
             <th>Programa</th>
@@ -45,7 +47,111 @@
             <th>Modalidad</th>
             <th>Fechas</th>
             <th>Horario</th>
-            <th>Grupo</th>
+            <!-- th>Grupo</th -->
+            <th>Público</th>
+            <th>Inscripción</th>
+            <th>Programa</th>
+            <th>Horas Acreditables</th>
+            <!-- th>Programa</th -->
+            <!-- th>Instructor</th -->
+            <!-- th>Correo</th -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <button class="accordion color-prepa">Preparatoria</button>
+    <div class="panel">
+      <div class="botonera">
+        <button class="button5" onclick="updateInputs('AGS')">AGS</button>
+        <button class="button5" onclick="updateInputs('COB')">COB</button>
+        <button class="button5" onclick="updateInputs('GDA')">GDA</button>
+        <button class="button5" onclick="updateInputs('SIN')">SIN</button>
+        <button class="button5" onclick="updateInputs('SON')">SON</button>
+        <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+        <button class="button5" onclick="updateInputs('Nacional')">NAL</button>
+      </div>
+      <table id="tabla_oferta_prepa" class="dataTable display">
+        <thead>
+          <tr>
+            <th>Campus</th>
+            <th>Lugar</th>
+            <th>Curso/Taller</th>
+            <th>Modalidad</th>
+            <th>Fechas</th>
+            <th>Horario</th>
+            <!-- th>Grupo</th -->
+            <th>Público</th>
+            <th>Inscripción</th>
+            <th>Programa</th>
+            <th>Horas Acreditables</th>
+            <!-- th>Programa</th -->
+            <!-- th>Instructor</th -->
+            <!-- th>Correo</th -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <th>Campus</th>
+            <th>Lugar</th>
+            <th>Curso/Taller</th>
+            <th>Modalidad</th>
+            <th>Fechas</th>
+            <th>Horario</th>
+            <!-- th>Grupo</th -->
+            <th>Público</th>
+            <th>Inscripción</th>
+            <th>Programa</th>
+            <th>Horas Acreditables</th>
+            <!-- th>Programa</th -->
+            <!-- th>Instructor</th -->
+            <!-- th>Correo</th -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <button class="accordion color-pdp">PDP - Programa de Desarrollo de Profesores</button>
+    <div class="panel">
+      <div class="botonera">
+        <button class="button5" onclick="updateInputs('AGS')">AGS</button>
+        <button class="button5" onclick="updateInputs('COB')">COB</button>
+        <button class="button5" onclick="updateInputs('GDA')">GDA</button>
+        <button class="button5" onclick="updateInputs('SIN')">SIN</button>
+        <button class="button5" onclick="updateInputs('SON')">SON</button>
+        <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+        <button class="button5" onclick="updateInputs('Nacional')">NAL</button>
+      </div>
+      <table id="tabla_oferta_pdp" class="dataTable display">
+        <thead>
+          <tr>
+            <th>Campus</th>
+            <th>Lugar</th>
+            <th>Curso/Taller</th>
+            <th>Modalidad</th>
+            <th>Fechas</th>
+            <th>Horario</th>
+            <!-- th>Grupo</th -->
+            <th>Público</th>
+            <th>Inscripción</th>
+            <th>Programa</th>
+            <th>Horas Acreditables</th>
+            <!-- th>Programa</th -->
+            <!-- th>Instructor</th -->
+            <!-- th>Correo</th -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <th>Campus</th>
+            <th>Lugar</th>
+            <th>Curso/Taller</th>
+            <th>Modalidad</th>
+            <th>Fechas</th>
+            <th>Horario</th>
+            <!-- th>Grupo</th -->
             <th>Público</th>
             <th>Inscripción</th>
             <th>Programa</th>
@@ -67,8 +173,9 @@
         <button class="button5" onclick="updateInputs('SIN')">SIN</button>
         <button class="button5" onclick="updateInputs('SON')">SON</button>
         <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+        <button class="button5" onclick="updateInputs('Nacional')">NAL</button>
       </div>
-      <table id="tabla_oferta_transversales" class="table table-bordered table-striped">
+      <table id="tabla_oferta_transversales" class="dataTable display">
         <thead>
           <tr>
             <th>Campus</th>
@@ -77,7 +184,7 @@
             <th>Modalidad</th>
             <th>Fechas</th>
             <th>Horario</th>
-            <th>Grupo</th>
+            <!-- th>Grupo</th -->
             <th>Público</th>
             <th>Inscripción</th>
             <th>Programa</th>
@@ -96,7 +203,7 @@
             <th>Modalidad</th>
             <th>Fechas</th>
             <th>Horario</th>
-            <th>Grupo</th>
+            <!-- th>Grupo</th -->
             <th>Público</th>
             <th>Inscripción</th>
             <th>Programa</th>
@@ -118,6 +225,7 @@
         <button class="button5" onclick="updateInputs('SIN')">SIN</button>
         <button class="button5" onclick="updateInputs('SON')">SON</button>
         <button class="button5" onclick="updateInputs('ZAC')">ZAC</button>
+        <button class="button5" onclick="updateInputs('Nacional')">NAL</button>
       </div>
       <div class="botonera">
         <button class="button5" onclick="updateTec21('Actualizado en la Docencia')">Actualizado en la Docencia</button>
@@ -128,7 +236,7 @@
         <button class="button5" onclick="updateTec21('Semana i')">Semana i</button>
         <button class="button5" onclick="updateTec21('Semestre i')">Semestre i</button>
       </div>
-      <table id="tabla_oferta_tec21" class="dataTable">
+      <table id="tabla_oferta_tec21" class="dataTable display">
         <thead>
           <tr>
             <th>Campus</th>
@@ -137,7 +245,7 @@
             <th>Modalidad</th>
             <th>Fechas</th>
             <th>Horario</th>
-            <th>Grupo</th>
+            <!-- th>Grupo</th -->
             <th>Público</th>
             <th>Inscripción</th>
             <th>Programa</th>
@@ -156,7 +264,7 @@
             <th>Modalidad</th>
             <th>Fechas</th>
             <th>Horario</th>
-            <th>Grupo</th>
+            <!-- th>Grupo</th -->
             <th>Público</th>
             <th>Inscripción</th>
             <th>Programa</th>

@@ -37,6 +37,16 @@ body {
   font-size: 15px;
   transition: 0.4s;
 }
+.color-pdptec21 {
+  background-color: #0272a1;
+  font-weight: bold;
+  color: #fff;
+}
+.color-prepa {
+  background-color: #ff8c00;
+  font-weight: bold;
+  color: #fff;
+}
 .color-pdp {
   background-color: #42b2e1;
   font-weight: bold;
@@ -55,9 +65,9 @@ body {
 
 .active,
 .accordion:hover {
-  background-color: #D4574E;
+  background-color: #c0c0c0;
   font-weight: bold;
-  color: #fff;
+  color: #191919;
 }
 
 .accordion:after {
